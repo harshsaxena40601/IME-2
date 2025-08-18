@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Shipping Professional Certification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .skills-section {
+            margin-bottom: 80px;
+        }
+
+        .skills-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .skill-item::before {
+            content: '✓';
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .certification-section {
+            margin-bottom: 80px;
+        }
+
+        .cert-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .cert-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .certificate-display {
+            flex: 0 0 500px;
+            position: relative;
+        }
+
+        .certificate-display img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .certificate-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .cert-number {
+            background: #2a5298;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .startup-logo {
+            color: #4CAF50;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .startup-logo::before {
+            content: '🌱';
+            margin-right: 5px;
+        }
+
+        .ime-logo {
+            text-align: center;
+            flex: 1;
+        }
+
+        .ime-text {
+            color: #2a5298;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .ime-subtitle {
+            color: #666;
+            font-size: 10px;
+            margin-top: -5px;
+        }
+
+        .ship-icon {
+            color: #2a5298;
+            font-size: 20px;
+        }
+
+        .made-in-india {
+            color: #333;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .certificate-title {
+            color: #DAA520;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 30px 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .of-completion {
+            color: #DAA520;
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .awarded-text {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .recipient-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #999;
+            margin: 20px 0;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .cert-divider {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #DAA520, transparent);
+            margin: 20px auto;
+        }
+
+        .completion-text {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .golden-seal {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .seal-content {
+            text-align: center;
+            color: #333;
+        }
+
+        .seal-star {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .seal-text {
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .cert-footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .signature-section {
+            text-align: center;
+        }
+
+        .signature {
+            font-family: cursive;
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .signature-line {
+            width: 120px;
+            height: 1px;
+            background: #DAA520;
+            margin: 0 auto 5px;
+        }
+
+        .signature-text {
+            font-size: 12px;
+            color: #DAA520;
+            font-weight: 600;
+        }
+
+        .incubated-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .incubated-text {
+            background: #2a5298;
+            color: white;
+            padding: 5px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .partner-logos {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .logo-placeholder {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 10px;
+        }
+
+        .tides-logo { background: #4CAF50; color: white; }
+        .openai-logo { background: #00A67E; color: white; }
+        .azure-logo { background: #0078D4; color: white; }
+        .microsoft-logo { background: #00BCF2; color: white; }
+
+        .program-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .program-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .program-list {
+            list-style: none;
+        }
+
+        .program-list li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .program-list li::before {
+            content: '•';
+            color: #3498db;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .program-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Curriculum Section */
+        .curriculum-section {
+            margin-top: 60px;
+        }
+
+        .curriculum-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .curriculum-description {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .curriculum-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .curriculum-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .curriculum-header:hover {
+            background: #e9ecef;
+        }
+
+        .curriculum-bullet {
+            width: 12px;
+            height: 12px;
+            background: #2a5298;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .curriculum-title-text {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .curriculum-toggle {
+            font-size: 18px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .curriculum-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .curriculum-content.active {
+            max-height: 200px;
+            padding: 20px;
+        }
+
+        .curriculum-content p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .contact-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .contact-phone {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 5px;
+        }
+
+        .contact-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .phone-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .country-code {
+            width: 80px;
+        }
+
+        .privacy-text {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .privacy-link {
+            color: #2a5298;
+            text-decoration: none;
+        }
+
+        .cta-button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #1e3c72;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .cert-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .certificate-frame {
+                flex: none;
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .phone-input {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Essential Skills Section -->
+        <div class="skills-section">
+            <h2 class="skills-title">Essential Skills You Will Develop</h2>
+            <div class="skills-grid">
+                <div class="skill-item">AI and Machine Learning in Maritime Operations</div>
+                <div class="skill-item">Autonomous Vessel Navigation Systems</div>
+                <div class="skill-item">Digital Twin Technology for Ships</div>
+                <div class="skill-item">Predictive Maintenance and Analytics</div>
+                <div class="skill-item">Smart Port and Terminal Management</div>
+                <div class="skill-item">Maritime IoT and Sensor Integration</div>
+                <div class="skill-item">Simulator-Based Training Methodologies</div>
+                <div class="skill-item">Advanced Bridge Resource Management</div>
+                <div class="skill-item">Maritime Safety and Risk Assessment</div>
+                <div class="skill-item">Crew Performance Optimization</div>
+                <div class="skill-item">Digital Navigation and ECDIS Systems</div>
+                <div class="skill-item">Maritime Cybersecurity Protocols</div>
+                <div class="skill-item">Real-time Weather and Route Optimization</div>
+                <div class="skill-item">Cargo Handling and Load Planning Systems</div>
+                <div class="skill-item">Environmental Compliance Monitoring</div>
+                <div class="skill-item">Fleet Management and Optimization</div>
+                <div class="skill-item">Maritime Communication Technologies</div>
+                <div class="skill-item">Emergency Response Simulation</div>
+                <div class="skill-item">Data Analytics for Maritime Operations</div>
+                <div class="skill-item">Blockchain in Maritime Supply Chain</div>
+            </div>
+        </div>
+
+        <!-- Professional Certification Section -->
+        <div class="certification-section">
+            <h2 class="cert-title">Earn Professional Certifications</h2>
+            <div class="cert-container">
+                <div class="certificate-display">
+                    <img src="/Picsart_25-08-17_19-22-49-860.png" 
+                         alt="IME Certificate" 
+                         style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                    </div>
+                </div>
+
+                <div class="program-details">
+                    <h3 class="program-title">Program Certificate</h3>
+                    <ul class="program-list">
+                        <li>Master AI applications in shipping, maritime automation, and digital navigation systems</li>
+                        <li>Gain hands-on experience with advanced ship simulators, bridge management, and emergency response training</li>
+                        <li>Master cutting-edge maritime technologies including autonomous vessels, predictive analytics, and IoT integration</li>
+                        <li>Develop expertise in maritime cybersecurity, environmental monitoring, and fleet optimization systems</li>
+                        <li>Unlock high-growth career prospects in digital maritime industry and smart shipping operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Program Curriculum Section -->
+        <div class="curriculum-section">
+            <h2 class="curriculum-title">Program Curriculum</h2>
+            <p class="curriculum-description">
+                This program equips learners to implement data-driven decision-making, predictive analytics, and 
+                automation in maritime operations, ensuring competitiveness in a digital world. It also offers practical exposure to real-world 
+                challenges faced by maritime professionals.
+            </p>
+
+            <div class="curriculum-item">
+                <div class="curriculum-header" onclick="toggleCurriculum(this)">
+                    <div class="curriculum-bullet"></div>
+                    <div class="curriculum-title-text">Introduction to AI in Maritime Operations Program</div>
+                    <div class="curriculum-toggle">⌄</div>
+                </div>
+                <div class="curriculum-content">
+                    <p>Embark on an immersive learning journey with this AI in Maritime program. Discover the fundamentals of artificial intelligence applications in shipping, unlocking a world of knowledge and opportunities in modern maritime technology.</p>
+                </div>
+            </div>
+
+            <div class="curriculum-item">
+                <div class="curriculum-header" onclick="toggleCurriculum(this)">
+                    <div class="curriculum-bullet"></div>
+                    <div class="curriculum-title-text">Mastering Ship Simulation Technologies: A Comprehensive Training</div>
+                    <div class="curriculum-toggle">⌄</div>
+                </div>
+                <div class="curriculum-content">
+                    <p>Gain hands-on experience with state-of-the-art ship simulators and bridge management systems. Learn advanced navigation techniques, emergency response protocols, and crew coordination strategies through immersive simulation training.</p>
+                </div>
+            </div>
+
+            <div class="curriculum-item">
+                <div class="curriculum-header" onclick="toggleCurriculum(this)">
+                    <div class="curriculum-bullet"></div>
+                    <div class="curriculum-title-text">Architecting the Future: Smart Port and Digital Maritime Infrastructure</div>
+                    <div class="curriculum-toggle">⌄</div>
+                </div>
+                <div class="curriculum-content">
+                    <p>Understand how modern digital technologies enable smart port operations and automated vessel management. Learn the importance of IoT integration, predictive analytics, and digital twin technologies in maritime infrastructure.</p>
+                </div>
+            </div>
+
+            <div class="curriculum-item">
+                <div class="curriculum-header" onclick="toggleCurriculum(this)">
+                    <div class="curriculum-bullet"></div>
+                    <div class="curriculum-title-text">Advanced Navigation Systems: ECDIS and Autonomous Vessel Technology</div>
+                    <div class="curriculum-toggle">⌄</div>
+                </div>
+                <div class="curriculum-content">
+                    <p>Master Electronic Chart Display and Information Systems (ECDIS) and explore autonomous vessel navigation technologies. Learn route optimization, collision avoidance systems, and real-time decision-making algorithms.</p>
+                </div>
+            </div>
+
+            <div class="curriculum-item">
+                <div class="curriculum-header" onclick="toggleCurriculum(this)">
+                    <div class="curriculum-bullet"></div>
+                    <div class="curriculum-title-text">Maritime Data Analytics and Predictive Maintenance</div>
+                    <div class="curriculum-toggle">⌄</div>
+                </div>
+                <div class="curriculum-content">
+                    <p>Learn to analyze maritime big data for operational insights and implement predictive maintenance strategies. Understand machine learning applications in fleet management and cargo optimization.</p>
+                </div>
+            </div>
+
+            <div class="curriculum-item">
+                <div class="curriculum-header" onclick="toggleCurriculum(this)">
+                    <div class="curriculum-bullet"></div>
+                    <div class="curriculum-title-text">Cybersecurity in Maritime Operations and Digital Safety Protocols</div>
+                    <div class="curriculum-toggle">⌄</div>
+                </div>
+                <div class="curriculum-content">
+                    <p>Explore maritime cybersecurity challenges and implement robust security protocols for digital maritime systems. Learn threat detection, incident response, and security compliance in connected vessel environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <div class="contact-header">
+                <div class="contact-title">Request More Information</div>
+                <div class="contact-phone">1800-212-7688</div>
+                <div class="contact-subtitle">(Toll free)</div>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name*" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email*" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group phone-input">
+                        <select class="country-code">
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                        </select>
+                        <input type="tel" placeholder="Phone Number*" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Total Work Experience*</option>
+                            <option value="0-1">0-1 years</option>
+                            <option value="2-5">2-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="cta-button">Talk to an Advisor</button>
+                
+                <p class="privacy-text">
+                    By providing your contact details, you agree to our <a href="#" class="privacy-link">Privacy Policy</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleCurriculum(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.curriculum-toggle');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                toggle.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all other items
+                document.querySelectorAll('.curriculum-content.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelectorAll('.curriculum-toggle').forEach(item => {
+                    item.style.transform = 'rotate(0deg)';
+                });
+                
+                // Open current item
+                content.classList.add('active');
+                toggle.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
