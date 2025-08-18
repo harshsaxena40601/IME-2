@@ -163,13 +163,11 @@
         <!-- Professional Certification Section -->
         <div class="certification-section">
             <h2 class="cert-title">Earn Professional Certifications</h2>
-            <div class="cert-container">
+            <div class="cert-flex">
                 <div class="certificate-display">
                     <img src="/Picsart_25-08-17_19-22-49-860.png" 
                          alt="IME Certificate"> 
                 </div>
-              </div>
-
                 <div class="program-details">
                     <h3 class="program-title">Program Certificate</h3>
                     <ul class="program-list">
@@ -478,37 +476,33 @@
 
     <!-- Contact Form -->
     <section class="contact">
-      <div class="container">
-        <div class="contact-container">
-          <h2 class="contact-title">Have Questions?</h2>
-          <p class="contact-subtitle">
-            Our admissions team is here to help you get started
-          </p>
+  <div class="container-26">
+    <div class="contact-container">
+      <h2 class="contact-title">Have Questions?</h2>
+      <p class="contact-subtitle">
+        Our admissions team is here to help you get started
+      </p>
 
-          <form class="contact-form">
-            <div class="form-row">
-              <input type="text" placeholder="Full Name" class="form-input" />
-              <input
-                type="email"
-                placeholder="Email Address"
-                class="form-input"
-              />
-            </div>
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              class="form-input full-width"
-            />
-            <textarea
-              placeholder="Your Message"
-              rows="4"
-              class="form-textarea"
-            ></textarea>
-            <button type="submit" class="form-submit">Send Message</button>
-          </form>
+      <form class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Your Email" required />
+          </div>
         </div>
-      </div>
-    </section>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Your Message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
