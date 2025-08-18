@@ -258,12 +258,14 @@ body {
 
 .hero-subtitle {
   display: block;
-  color: #bfdbfe;
+  color: #9bb4d3;
+  font-size: 2rem;
   text-align: center; /* Center align the subtitle */
 }
 
 @media (min-width: 1024px) {
   .hero-subtitle {
+
     text-align: left; /* Revert to left alignment on larger screens */
   }
 }
@@ -273,7 +275,8 @@ body {
   color: #bfdbfe;
   line-height: 1.6;
   max-width: 42rem;
-  text-align: center; /* Center align the description */
+  font-size: 1rem;
+  text-align:center; /* Center align the description */
 }
 
 @media (min-width: 1024px) {
@@ -1586,46 +1589,87 @@ body {
   background-color: #f3f4f6;
 }
 
-/* Footer */
+/* Footer Styles (unchanged) */
 .footer {
   background-color: #111827;
-  color: rgb(248, 242, 242);
+  color: white;
   padding: 3rem 0;
-  width: 100%;
-  margin: 0;
-  box-sizing: border-box;
-  text-align: center;
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center; /* Vertically align items */
+  display: grid;
+  gap: 2rem;
 }
 
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .footer-content {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 2fr 1fr 1fr;
   }
+}
 
-  .footer-main,
-  .footer-links,
-  .footer-support {
-    margin-bottom: 2rem;
-    text-align: center;
+.footer-main {
+  grid-column: span 2;
+}
+
+@media (min-width: 768px) {
+  .footer-main {
+    grid-column: span 1;
   }
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #3b82f6;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.footer-description {
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  max-width: 28rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social i {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-social i:hover {
+  color: #3b82f6;
+}
+
+.footer-links-title,
+.footer-support-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .footer-links-list,
 .footer-support-list {
   list-style: none;
-  padding: 0;
+  color: #9ca3af;
 }
 
 .footer-links-list li,
@@ -1635,7 +1679,7 @@ body {
 
 .footer-links-list a,
 .footer-support-list a {
-  color: #ddd;
+  color: #9ca3af;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -1646,90 +1690,47 @@ body {
 }
 
 .footer-bottom {
-  text-align: center;
+  border-top: 1px solid #374151;
+  margin-top: 2rem;
   padding-top: 2rem;
-  /* border-top: 1px solid #555; */ /* Remove the border */
-}
-
-/* Adjustments for contact info */
-.footer-contact {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-copyright {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @media (min-width: 768px) {
   .footer-contact {
     flex-direction: row;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 
 .footer-contact-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
 }
 
 .footer-contact-item i {
-  color: #bbb;
-}
-
-/* Responsive Design */
-@media (max-width: 767px) {
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-link {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .enroll-btn {
-    margin-top: 1rem;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .pricing-title {
-    font-size: 1.5rem;
-  }
-
-  .contact-title {
-    font-size: 1.5rem;
-  }
-}
-
-/* Animation Classes for JavaScript */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+  margin-right: 0.5rem;
 }

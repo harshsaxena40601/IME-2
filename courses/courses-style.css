@@ -681,11 +681,13 @@ body {
   font-weight: 600;
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
+  color: white;
 }
 
 .feature-description {
   font-size: 0.875rem;
   opacity: 0.8;
+  color: white;
   line-height: 1.6;
 }
 
@@ -834,7 +836,10 @@ body {
 .footer-contact-item i {
   margin-right: 0.5rem;
 }
-
+.no-link-style{
+  text-decoration: none;
+  color: inherit;
+}
 /* Enhanced no experience box */
 .no-experience-box {
   text-align: center;
