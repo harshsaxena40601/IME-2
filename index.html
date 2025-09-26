@@ -550,7 +550,146 @@
 
 
         </div>
-      </section>
+                <!-- Show More/Less Button -->
+        <div class="show-more-container">
+            <button class="show-more-btn" id="showMoreBtn">
+                Show More Courses <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Add More Courses Section (shown when all courses are displayed) -->
+        <div class="add-more-section" id="addMoreSection" style="display: none;">
+            <h3 style="font-size: 1.5rem; color: #1e3a8a; margin-bottom: 0.5em; font-weight: 700;">
+        Looking for More Courses?
+    </h3>
+    <p style="font-size: 1.1rem; color: #333; line-height: 1.6; margin-bottom: 0;">
+        adding new courses to help you master maritime shipping!
+        <br>
+        <span style="color: #2563eb; font-weight: 500;">
+            Contact us to suggest topics or request custom training solutions.
+        </span>
+    </p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const showMoreBtn = document.getElementById('showMoreBtn');
+            const addMoreSection = document.getElementById('addMoreSection');
+            const courseCards = document.querySelectorAll('.structure-card');
+            const coursesPerBatch = 5;
+            let currentlyVisible = coursesPerBatch;
+            let isExpanded = false;
+
+            // Initially hide courses after the first 5
+            function initializeCourseVisibility() {
+                courseCards.forEach((card, index) => {
+                    if (index >= coursesPerBatch) {
+                        card.parentElement.style.display = 'none';
+                    }
+                });
+            }
+
+            // Show more courses
+            function showMoreCourses() {
+                const hiddenCourses = [];
+                courseCards.forEach((card, index) => {
+                    if (card.parentElement.style.display === 'none') {
+                        hiddenCourses.push({card: card, element: card.parentElement, index: index});
+                    }
+                });
+
+                // Show next batch of courses with animation
+                const coursesToShow = hiddenCourses.slice(0, coursesPerBatch);
+                coursesToShow.forEach((courseObj, i) => {
+                    setTimeout(() => {
+                        courseObj.element.style.display = 'block';
+                        courseObj.element.style.opacity = '0';
+                        courseObj.element.style.transform = 'translateY(20px)';
+                        
+                        requestAnimationFrame(() => {
+                            courseObj.element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            courseObj.element.style.opacity = '1';
+                            courseObj.element.style.transform = 'translateY(0)';
+                        });
+                    }, i * 100);
+                });
+
+                currentlyVisible += coursesToShow.length;
+
+                // Check if all courses are now visible
+                const stillHidden = hiddenCourses.length - coursesToShow.length;
+                if (stillHidden === 0) {
+                    showMoreBtn.innerHTML = 'Show Less Courses <i class="fas fa-chevron-up"></i>';
+                    showMoreBtn.classList.add('expanded');
+                    isExpanded = true;
+                    
+                    // Show "Add More Courses" section
+                    setTimeout(() => {
+                        addMoreSection.style.display = 'block';
+                        addMoreSection.style.opacity = '0';
+                        addMoreSection.style.transform = 'translateY(20px)';
+                        
+                        requestAnimationFrame(() => {
+                            addMoreSection.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            addMoreSection.style.opacity = '1';
+                            addMoreSection.style.transform = 'translateY(0)';
+                        });
+                    }, 300);
+                } else {
+                    showMoreBtn.innerHTML = `Show More Courses (${stillHidden} remaining) <i class="fas fa-chevron-down"></i>`;
+                }
+            }
+
+            // Show less courses (collapse)
+            function showLessCourses() {
+                // Hide courses beyond the first 5
+                courseCards.forEach((card, index) => {
+                    if (index >= coursesPerBatch) {
+                        card.parentElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.parentElement.style.opacity = '0';
+                        card.parentElement.style.transform = 'translateY(-20px)';
+                        
+                        setTimeout(() => {
+                            card.parentElement.style.display = 'none';
+                        }, 300);
+                    }
+                });
+
+                // Hide "Add More Courses" section
+                addMoreSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                addMoreSection.style.opacity = '0';
+                addMoreSection.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    addMoreSection.style.display = 'none';
+                }, 300);
+
+                currentlyVisible = coursesPerBatch;
+                isExpanded = false;
+                showMoreBtn.innerHTML = 'Show More Courses <i class="fas fa-chevron-down"></i>';
+                showMoreBtn.classList.remove('expanded');
+
+                // Scroll back to courses section
+                document.getElementById('Programs').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+
+            // Button click handler
+            showMoreBtn.addEventListener('click', function() {
+                if (isExpanded) {
+                    showLessCourses();
+                } else {
+                    showMoreCourses();
+                }
+            });
+
+            // Initialize the page
+            initializeCourseVisibility();
+        });
+    </script>
 
       <!-- Course Curriculum -->
 

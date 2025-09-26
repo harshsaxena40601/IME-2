@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Program Section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .program-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+        }
+
+        .program-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .no-link-style {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .structure-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .structure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #9b59b6);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .structure-card.blue {
+            border-left-color: #3498db;
+        }
+
+        .structure-card.blue::before {
+            background: linear-gradient(90deg, #3498db, #5dade2);
+        }
+
+        .structure-card.green {
+            border-left-color: #2ecc71;
+        }
+
+        .structure-card.green::before {
+            background: linear-gradient(90deg, #2ecc71, #58d68d);
+        }
+
+        .structure-card.purple {
+            border-left-color: #9b59b6;
+        }
+
+        .structure-card.purple::before {
+            background: linear-gradient(90deg, #9b59b6, #bb8fce);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-hover:hover::before {
+            transform: scaleX(1);
+        }
+
+        .structure-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .structure-card.green .structure-icon {
+            color: #2ecc71;
+        }
+
+        .structure-card.purple .structure-icon {
+            color: #9b59b6;
+        }
+
+        .structure-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+
+        .structure-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .structure-features {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .structure-features li {
+            color: #34495e;
+            margin-bottom: 8px;
+            padding-left: 10px;
+            position: relative;
+            font-size: 0.9em;
+        }
+
+        .structure-features li::before {
+            content: '✓';
+            position: absolute;
+            left: -10px;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        /* Show More/Less Button Styles */
+        .show-more-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .show-more-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .show-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+        }
+
+        .show-more-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .show-more-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+        /* Hidden courses */
+        .structure-card.hidden {
+            display: none;
+        }
+
+        /* Add more courses section */
+        .add-more-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .add-more-section h3 {
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .add-more-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .add-course-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .add-course-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .program-structure {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .structure-card {
+                padding: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Program Structure -->
+    <section class="program-section" id="Programs">
+        <div class="section-header">
+            <h2>Our Course Programs</h2>
+            <p>Master maritime shipping with AI-powered learning experiences</p>
+        </div>
+
+        <div class="program-structure" id="courseContainer">
+            <!-- Course 1 -->
+            <a href="/courses/course1.html" class="no-link-style">
+                <div class="structure-card card-hover blue" data-course="1">
+                    <div class="structure-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3 class="structure-title">Introduction to Commercial Shipping (With AI-Based Simulator)</h3>
+                    <p class="structure-description">
+                        Learn the fundamentals of global maritime trade and shipping operations.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5+ Hours of Content</li>
+                        <li>Interactive Case Studies</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 2 -->
+            <a href="/courses/course2.html" class="no-link-style">
+                <div class="structure-card card-hover blue" data-course="2">
+                    <div class="structure-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <h3 class="structure-title">Ship Brokering & Chartering (With AI-Based Simulator)- Foundation Level</h3>
+                    <p class="structure-description">
+                        Build a solid foundation in ship brokering and chartering with AI-based simulator training.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>Multi-Device Access</li>
+                        <li>Certificate of Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 3 -->
+            <a href="/courses/course3.html" class="no-link-style">
+                <div class="structure-card card-hover blue" data-course="3">
+                    <div class="structure-icon">
+                        <i class="fas fa-anchor"></i>
+                    </div>
+                    <h3 class="structure-title">Ship Brokering & Chartering(With AI-Based Simulator)- Pre-Advanced Level</h3>
+                    <p class="structure-description">
+                        Advance your brokering skills with practical, market-oriented chartering knowledge.
+                    </p>
+                    <ul class="structure-features">
+                        <li>10 Hours of Study Material</li>
+                        <li>Freight & Laytime Calculations</li>
+                        <li>AI-Based Simulation</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 4 -->
+            <a href="/courses/course4.html" class="no-link-style">
+                <div class="structure-card card-hover green" data-course="4">
+                    <div class="structure-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="structure-title">Ship Brokering & Chartering(With AI-Based Simulator)- Advanced Level</h3>
+                    <p class="structure-description">
+                        Master advanced chartering strategies, contracts, and market analysis.
+                    </p>
+                    <ul class="structure-features">
+                        <li>20 Hours of Study Material</li>
+                        <li>Break-Even Freight & Voyage Estimation</li>
+                        <li>AI-Driven Negotiation Tools</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 5 -->
+            <a href="/courses/course5.html" class="no-link-style">
+                <div class="structure-card card-hover purple" data-course="5">
+                    <div class="structure-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="structure-title">AI in Shipping</h3>
+                    <p class="structure-description">
+                        Explore AI applications, data analysis, and digital tools for smarter shipping.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>Digital Tools & Data Analysis</li>
+                        <li>AI-Based Simulator Training</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 6 - Initially Hidden -->
+            <a href="/courses/voyage-estimation.html" class="no-link-style">
+                <div class="structure-card card-hover blue hidden" data-course="6">
+                    <div class="structure-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="structure-title">Voyage Estimation</h3>
+                    <p class="structure-description">
+                        Learn to calculate voyage costs and freight economics using AI-driven estimation tools.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 7 - Initially Hidden -->
+            <a href="/courses/laytime-calculation.html" class="no-link-style">
+                <div class="structure-card card-hover green hidden" data-course="7">
+                    <div class="structure-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="structure-title">Laytime Calculation</h3>
+                    <p class="structure-description">
+                        Master laytime and demurrage calculations through real-world AI-enabled simulations.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 8 - Initially Hidden -->
+            <a href="/courses/post-fixture-operations.html" class="no-link-style">
+                <div class="structure-card card-hover green hidden" data-course="8">
+                    <div class="structure-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="structure-title">Post Fixture Operations</h3>
+                    <p class="structure-description">
+                        Gain expertise in managing voyage execution and charter party compliance using AI tools.
+                    </p>
+                    <ul class="structure-features">
+                        <li>10 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 9 - Initially Hidden -->
+            <a href="/courses/passage-planning.html" class="no-link-style">
+                <div class="structure-card card-hover purple hidden" data-course="9">
+                    <div class="structure-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3 class="structure-title">Passage Planning</h3>
+                    <p class="structure-description">
+                        Understand safe and efficient route planning with AI-based voyage optimization simulators.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 10 - Initially Hidden -->
+            <a href="/courses/cargo-tonnage-matching.html" class="no-link-style">
+                <div class="structure-card card-hover green hidden" data-course="10">
+                    <div class="structure-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="structure-title">Cargo Tonnage Matching</h3>
+                    <p class="structure-description">
+                        Explore how AI matches cargo with suitable vessels for maximizing efficiency.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 11 - Initially Hidden -->
+            <a href="/courses/charter-party.html" class="no-link-style">
+                <div class="structure-card card-hover blue hidden" data-course="11">
+                    <div class="structure-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="structure-title">Charter Party</h3>
+                    <p class="structure-description">
+                        Learn the structure, clauses, and negotiation strategies of charter parties with simulator-based training.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 12 - Initially Hidden -->
+            <a href="/courses/claim-settlement.html" class="no-link-style">
+                <div class="structure-card card-hover green hidden" data-course="12">
+                    <div class="structure-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="structure-title">Claim Settlement</h3>
+                    <p class="structure-description">
+                        Acquire practical skills in handling maritime claims and settlements with AI support.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 13 - Initially Hidden -->
+            <a href="/courses/market-analysis.html" class="no-link-style">
+                <div class="structure-card card-hover purple hidden" data-course="13">
+                    <div class="structure-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="structure-title">Market Analysis</h3>
+                    <p class="structure-description">
+                        Develop decision-making skills through AI-assisted analysis of shipping markets and trends.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+
+            <!-- Course 14 - Initially Hidden -->
+            <a href="/courses/custom-house-clearance.html" class="no-link-style">
+                <div class="structure-card card-hover green hidden" data-course="14">
+                    <div class="structure-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="structure-title">Custom House Clearance</h3>
+                    <p class="structure-description">
+                        Understand end-to-end customs documentation, procedures, and compliance for smooth cargo clearance.
+                    </p>
+                    <ul class="structure-features">
+                        <li>5 Hours of Study Material</li>
+                        <li>AI Based Simulator Training</li>
+                        <li>Certificate on Completion</li>
+                    </ul>
+                </div>
+            </a>
+        </div>
+
+        <!-- Show More/Less Button -->
+        <div class="show-more-container">
+            <button class="show-more-btn" id="showMoreBtn">
+                Show More Courses <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Add More Courses Section (shown when all courses are displayed) -->
+        <div class="add-more-section" id="addMoreSection" style="display: none;">
+            <h3>Looking for More Courses?</h3>
+            <p>We're constantly adding new courses to help you master maritime shipping!</p>
+            <a href="#" class="add-course-btn">
+                <i class="fas fa-plus"></i> Request New Course
+            </a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const showMoreBtn = document.getElementById('showMoreBtn');
+            const addMoreSection = document.getElementById('addMoreSection');
+            const courseCards = document.querySelectorAll('.structure-card');
+            const coursesPerBatch = 5;
+            let currentlyVisible = coursesPerBatch;
+            let isExpanded = false;
+
+            // Initially hide courses after the first 5
+            function initializeCourseVisibility() {
+                courseCards.forEach((card, index) => {
+                    if (index >= coursesPerBatch) {
+                        card.parentElement.style.display = 'none';
+                    }
+                });
+            }
+
+            // Show more courses
+            function showMoreCourses() {
+                const hiddenCourses = [];
+                courseCards.forEach((card, index) => {
+                    if (card.parentElement.style.display === 'none') {
+                        hiddenCourses.push({card: card, element: card.parentElement, index: index});
+                    }
+                });
+
+                // Show next batch of courses with animation
+                const coursesToShow = hiddenCourses.slice(0, coursesPerBatch);
+                coursesToShow.forEach((courseObj, i) => {
+                    setTimeout(() => {
+                        courseObj.element.style.display = 'block';
+                        courseObj.element.style.opacity = '0';
+                        courseObj.element.style.transform = 'translateY(20px)';
+                        
+                        requestAnimationFrame(() => {
+                            courseObj.element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            courseObj.element.style.opacity = '1';
+                            courseObj.element.style.transform = 'translateY(0)';
+                        });
+                    }, i * 100);
+                });
+
+                currentlyVisible += coursesToShow.length;
+
+                // Check if all courses are now visible
+                const stillHidden = hiddenCourses.length - coursesToShow.length;
+                if (stillHidden === 0) {
+                    showMoreBtn.innerHTML = 'Show Less Courses <i class="fas fa-chevron-up"></i>';
+                    showMoreBtn.classList.add('expanded');
+                    isExpanded = true;
+                    
+                    // Show "Add More Courses" section
+                    setTimeout(() => {
+                        addMoreSection.style.display = 'block';
+                        addMoreSection.style.opacity = '0';
+                        addMoreSection.style.transform = 'translateY(20px)';
+                        
+                        requestAnimationFrame(() => {
+                            addMoreSection.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            addMoreSection.style.opacity = '1';
+                            addMoreSection.style.transform = 'translateY(0)';
+                        });
+                    }, 300);
+                } else {
+                    showMoreBtn.innerHTML = `Show More Courses (${stillHidden} remaining) <i class="fas fa-chevron-down"></i>`;
+                }
+            }
+
+            // Show less courses (collapse)
+            function showLessCourses() {
+                // Hide courses beyond the first 5
+                courseCards.forEach((card, index) => {
+                    if (index >= coursesPerBatch) {
+                        card.parentElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        card.parentElement.style.opacity = '0';
+                        card.parentElement.style.transform = 'translateY(-20px)';
+                        
+                        setTimeout(() => {
+                            card.parentElement.style.display = 'none';
+                        }, 300);
+                    }
+                });
+
+                // Hide "Add More Courses" section
+                addMoreSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                addMoreSection.style.opacity = '0';
+                addMoreSection.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    addMoreSection.style.display = 'none';
+                }, 300);
+
+                currentlyVisible = coursesPerBatch;
+                isExpanded = false;
+                showMoreBtn.innerHTML = 'Show More Courses <i class="fas fa-chevron-down"></i>';
+                showMoreBtn.classList.remove('expanded');
+
+                // Scroll back to courses section
+                document.getElementById('Programs').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+
+            // Button click handler
+            showMoreBtn.addEventListener('click', function() {
+                if (isExpanded) {
+                    showLessCourses();
+                } else {
+                    showMoreCourses();
+                }
+            });
+
+            // Initialize the page
+            initializeCourseVisibility();
+        });
+    </script>
+    
+</body>
+</html>
